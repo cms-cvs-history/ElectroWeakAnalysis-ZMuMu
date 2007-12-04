@@ -1,0 +1,14 @@
+
+<bin file=zMinuit3Independentfit.cpp>
+<bin file=zMinuit3IndependentfitNoBack.cpp>
+<bin file=zMinuit3Independentfit_conv_NoBack.cpp>
+<bin file=zMinuit3Independentfit_conv.cpp>
+<bin file=zMinuit3Independentfit_conv_Spring07noIso_19Oct.cpp>
+<bin file=zMinuit3Independentfit_conv_Spring07noIso.cpp>
+<bin file=zMinuit3Independentfit_conv_Spring07.cpp>
+
+  <use name=root>
+  <use name=rootminuit>
+  <use name=rootminuit2>
+</bin>
+</bin>
