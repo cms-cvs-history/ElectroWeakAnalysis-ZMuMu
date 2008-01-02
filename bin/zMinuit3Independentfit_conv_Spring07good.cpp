@@ -4,6 +4,7 @@
 #include "TH1.h"
 #include "TF1.h"
 #include "TStyle.h"
+#include "TMath.h"
 #include <iostream>
 #include <cmath>
 using namespace std;
