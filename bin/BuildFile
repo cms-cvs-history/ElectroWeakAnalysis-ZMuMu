@@ -2,7 +2,6 @@
 <use name=rootminuit>
 <use name=rootminuit2>
 
-<bin file=zMinuit3Independentfit_conv_CSA07_10pb_isofinal.cpp name=zMinuit3Indendentfit_conv_CSA07_10pb_isofinal></bin>
 <bin file=zMuMuFit.cpp name=zMuMuFit>
   <use name=ElectroWeakAnalysis/ZMuMu>
 </bin>
