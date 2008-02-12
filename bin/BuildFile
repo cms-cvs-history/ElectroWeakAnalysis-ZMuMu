@@ -2,10 +2,5 @@
 <use name=rootminuit>
 <use name=rootminuit2>
 
-<bin file=zMuMuFit.cpp name=zMuMuFit>
-  <use name=ElectroWeakAnalysis/ZMuMu>
-</bin>
-<export></export>
 <bin file=zMinuit3Independentfit_conv_Spring07good.cpp name=zMinuit3Independentfit_conv_Spring07good></bin>
 <bin file=zMinuit3Independentfit_conv_Spring07noIso_good.cpp name=zMinuit3Independentfit_conv_Spring07noIso_good></bin>
-
