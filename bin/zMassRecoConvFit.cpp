@@ -12,6 +12,7 @@
 #include "TF1.h"
 #include "TCanvas.h"
 #include "TROOT.h"
+#include "TMath.h"
 #include <boost/shared_ptr.hpp>
 #include <iostream>
 #include <vector>
