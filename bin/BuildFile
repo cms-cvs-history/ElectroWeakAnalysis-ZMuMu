@@ -5,18 +5,33 @@
 #<bin file=zMuMuFit.cpp name=zMuMuFit>
 #  <use name=ElectroWeakAnalysis/ZMuMu>
 #</bin>
-<bin file=zMassBwFit.cpp name=zMassBwFit>
+<bin file=zMassFit.cpp name=zMassFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zMassMCFit.cpp name=zMassMCFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zMassResFit.cpp name=zMassResFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zMassRecoCoBwGGFit_out.cpp name=zMassRecoCoBwGGFit_out>
   <use name=ElectroWeakAnalysis/ZMuMu>
 </bin>
-<bin file=zMassBwIntFit.cpp name=zMassBwIntFit>
+<bin file=zMassRecoCoZLSGGFit_out.cpp name=zMassRecoCoZLSGGFit_out>
   <use name=ElectroWeakAnalysis/ZMuMu>
 </bin>
-<bin file=zMassRecoBwIntFit.cpp name=zMassRecoBwIntFit>
+<bin file=zMassRecoCoZLSfGGFit_out.cpp name=zMassRecoCoZLSfGGFit_out>
   <use name=ElectroWeakAnalysis/ZMuMu>
 </bin>
-<bin file=zMassRecoConvFit.cpp name=zMassRecoConvFit>
+<bin file=zMassRecoConvFit_out.cpp name=zMassRecoConvFit_out>
   <use name=ElectroWeakAnalysis/ZMuMu>
 </bin>
+#<bin file=zMassRecoZMMFit.cpp name=zMassRecoZMMFit>
+#  <use name=ElectroWeakAnalysis/ZMuMu>
+#</bin>
 <export></export>
 #<bin file=zMinuit3Independentfit_conv_CSA07_10pb_isofinal.cpp name=zMinuit3Independentfit_conv_CSA07_10pb_isofinal></bin>
 #<bin file=zMinuit3Independentfit_conv_Spring07good.cpp name=zMinuit3Independentfit_conv_Spring07good></bin>
