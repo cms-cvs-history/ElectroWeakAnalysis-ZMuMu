@@ -10,6 +10,7 @@
 #include "TFile.h"
 #include "TH1.h"
 #include "TF1.h"
+#include "TMath.h"
 #include "TCanvas.h"
 #include "TROOT.h"
 #include <boost/shared_ptr.hpp>
