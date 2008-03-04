@@ -5,9 +5,6 @@
 #<bin file=zMuMuFit.cpp name=zMuMuFit>
 #  <use name=ElectroWeakAnalysis/ZMuMu>
 #</bin>
-<bin file=zFitTest.cpp name=zFitTest>
-  <use name=PhysicsTools/Utilities>
-</bin>
 <bin file=zMassFit.cpp name=zMassFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
