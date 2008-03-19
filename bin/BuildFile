@@ -25,23 +25,3 @@
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
-<bin file=zMassRecoCoBwGGFit_out.cpp name=zMassRecoCoBwGGFit_out>
-  <use name=ElectroWeakAnalysis/ZMuMu>
-</bin>
-<bin file=zMassRecoCoZLSGGFit_out.cpp name=zMassRecoCoZLSGGFit_out>
-  <use name=ElectroWeakAnalysis/ZMuMu>
-</bin>
-<bin file=zMassRecoCoZLSfGGFit_out.cpp name=zMassRecoCoZLSfGGFit_out>
-  <use name=ElectroWeakAnalysis/ZMuMu>
-</bin>
-<bin file=zMassRecoConvFit_out.cpp name=zMassRecoConvFit_out>
-  <use name=ElectroWeakAnalysis/ZMuMu>
-</bin>
-#<bin file=zMassRecoZMMFit.cpp name=zMassRecoZMMFit>
-#  <use name=ElectroWeakAnalysis/ZMuMu>
-#</bin>
-<export></export>
-#<bin file=zMinuit3Independentfit_conv_CSA07_10pb_isofinal.cpp name=zMinuit3Independentfit_conv_CSA07_10pb_isofinal></bin>
-#<bin file=zMinuit3Independentfit_conv_Spring07good.cpp name=zMinuit3Independentfit_conv_Spring07good></bin>
-#<bin file=zMinuit3Independentfit_conv_Spring07noIso_good.cpp name=zMinuit3Independentfit_conv_Spring07noIso_good></bin>
-
