@@ -9,7 +9,15 @@
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
+<bin file=zMassHSFit.cpp name=zMassHSFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 <bin file=zMassMCFit.cpp name=zMassMCFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zToMuMuMassMCFit.cpp name=zToMuMuMassMCFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
