@@ -2,9 +2,10 @@
 <use name=rootminuit>
 <use name=rootminuit2>
 
-#<bin file=zMuMuFit.cpp name=zMuMuFit>
-#  <use name=ElectroWeakAnalysis/ZMuMu>
-#</bin>
+<bin file=zMuMuFit.cpp name=zMuMuFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 <bin file=zMassFit.cpp name=zMassFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>

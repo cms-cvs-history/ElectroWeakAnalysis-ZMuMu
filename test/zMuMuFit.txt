@@ -1,0 +1,23 @@
+#
+# Z -> Mu Mu fit  
+#
+#     name        value    error        min       max     free/fixed (optional)
+#------------------------------------------------------------------------------
+par  YieldZMuMu      9000.0     10            0    1000000     free 
+par  YieldZMuTk       300.0     10            0    1000000     free 
+par  YieldZMuSa        60.0     10            0    1000000     free 
+par  YieldPhotonMuMu    1        0.1          0    1000000     free
+par  YieldPhotonMuTk    1        0.1          0    1000000     free
+par  YieldBkgZMuTk   1000.0      1            0    1000000     free 
+par  YieldBkgZMuSa      2.0      1            0    1000000     free 
+par  Mass              91.19     0.1         70        110     free 
+par  Gamma              2.50     1            1         10     free 
+par  MeanZMuMu          0.0      0.1         -0.5        0.5   fixed 
+par  SigmaZMuMu         1.0      0.1          0         10     free 
+par  Lambda            -0.01     0.001     -100          0     free 
+par  A0             1.0      0.1          0          2     fixed 
+par  A1             0.0      1       -10000      10000     free
+par  A2             0.0      1        -1000       1000     free
+par  SigmaZMuSa     3.0      1            0         20     free 
+minimize 
+print_all
