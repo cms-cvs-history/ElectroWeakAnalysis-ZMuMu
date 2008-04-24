@@ -6,6 +6,10 @@
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
+<bin file=zMuMuExpFit.cpp name=zMuMuExpFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 <bin file=zMassFit.cpp name=zMassFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
