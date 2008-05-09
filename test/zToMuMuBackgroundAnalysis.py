@@ -76,7 +76,7 @@ zPlots = cms.PSet(
     max = cms.untracked.double(200.0),
     nbins = cms.untracked.int32(200),
     name = cms.untracked.string("zMass"),
-    description = cms.untracked.string("Z mass [GeV/c^(2)]"),
+    description = cms.untracked.string("Z mass [GeV/c^{2}]"),
     plotquantity = cms.untracked.string("mass")
     ),
     cms.PSet(
@@ -84,7 +84,7 @@ zPlots = cms.PSet(
     max = cms.untracked.double(200.0),
     nbins = cms.untracked.int32(200),
     name = cms.untracked.string("mu1Pt"),
-    description = cms.untracked.string("Highest muon p_(t) [GeV/c]"),
+    description = cms.untracked.string("Highest muon p_{t} [GeV/c]"),
     plotquantity = cms.untracked.string("max(daughter(0).pt,daughter(1).pt)")
     ),
     cms.PSet(
@@ -92,7 +92,7 @@ zPlots = cms.PSet(
     max = cms.untracked.double(200.0),
     nbins = cms.untracked.int32(200),
     name = cms.untracked.string("mu2Pt"),
-    description = cms.untracked.string("Lowest muon p_(t) [GeV/c]"),
+    description = cms.untracked.string("Lowest muon p_{t} [GeV/c]"),
     plotquantity = cms.untracked.string("min(daughter(0).pt,daughter(1).pt)")
     )
     )
@@ -107,16 +107,18 @@ goodZToMuMuPlotsTemplate = cms.EDAnalyzer(
 
 process.goodZToMuMuPlots = goodZToMuMuPlotsTemplate
 
-etaBounds = [0, 0.5, 1, 1.5]
+etaBounds = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.0]
 
 def addModulesFromTemplate(sequence, moduleLabel, src, probeSelection):
     print "selection for: ", moduleLabel   
-    for i in range(len(etaBounds)-1): 
+    for i in range(len(etaBounds)-1):
+        etaMin = etaBounds[i]
+        etaMax = etaBounds[i+1]
         module = copy.deepcopy(goodZToMuMuTemplate)
         if probeSelection == "single":
-            cut = "%5.3f < daughter(1).eta < %5.3f" %(etaBounds[i], etaBounds[i+1])
+            cut = "%5.3f < daughter(1).eta < %5.3f" %(etaMin, etaMax)
         elif probeSelection == "double":
-            cut = "%5.3f < daughter(0).eta < %5.3f | %5.3f < daughter(1).eta < %5.3f" %(etaBounds[i], etaBounds[i+1],etaBounds[i], etaBounds[i+1])
+            cut = "%5.3f < daughter(0).eta < %5.3f | %5.3f < daughter(1).eta < %5.3f" %(etaMin, etaMax, etaMin, etaMax)
         print i, ") cut = ",  cut 
         setattr(module, "cut", cut)
         setattr(module, "src", cms.InputTag(src))
@@ -129,7 +131,7 @@ def addModulesFromTemplate(sequence, moduleLabel, src, probeSelection):
         plotModule = copy.deepcopy(goodZToMuMuPlotsTemplate)
         setattr(plotModule, "src", cms.InputTag(copyModuleLabel))
         for h in plotModule.histograms:
-            h.description.setValue(h.description.value() + " - " + cut)
+            h.description.setValue(h.description.value() + ": " + "#eta: [%5.3f, %5.3f]" %(etaMin, etaMax))
         plotModuleLabel = moduleLabel + "Plots" + str(i)
         setattr(process, plotModuleLabel, plotModule)
         sequence = sequence + plotModule
