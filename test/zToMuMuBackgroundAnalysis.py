@@ -1,4 +1,5 @@
 import FWCore.ParameterSet.Config as cms
+import copy
 
 process = cms.Process("ZToMuMuBackgroundAnalysis")
 
@@ -61,62 +62,11 @@ process.goodZToMuMuOneStandAloneMuon = cms.EDFilter(
     filter = cms.bool(True)
 )
 
-bin0CutTwoDaughters = cms.PSet(
-    cut = cms.string("0 < daughter(0).eta < 0.5 | 0 < daughter(1).eta < 0.5")
-)
-
-bin1CutTwoDaughters = cms.PSet (
-    cut = cms.string("0.5 < daughter(0).eta < 1 | 0.5 < daughter(1).eta < 1")
-)
-
-bin0CutOneDaughter = cms.PSet (
-    cut = cms.string("0 < daughter(1).eta < 0.5")
-)
-
-bin1CutOneDaughter = cms.PSet(
-    cut = cms.string("0.5 < daughter(1).eta < 1")
-)
-
-process.goodZToMuMuBin0 = cms.EDFilter(
+goodZToMuMuTemplate = cms.EDFilter(
     "CandViewRefSelector",
-    bin0CutTwoDaughters,
+    cut = cms.string("replace this string with your cut"),
     src = cms.InputTag("goodZToMuMu"),
-    filter = cms.bool(True)
-)
-
-process.goodZToMuMuBin1 = cms.EDFilter(
-    "CandViewRefSelector",
-    bin1CutTwoDaughters,
-    src = cms.InputTag("goodZToMuMu"),
-    filter = cms.bool(True)
-)
-
-process.goodZToMuMuOneStandAloneMuonBin0 = cms.EDFilter(
-    "CandViewRefSelector",
-    bin0CutOneDaughter,
-    src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
-    filter = cms.bool(True)
-)
-
-process.goodZToMuMuOneStandAloneMuonBin1 = cms.EDFilter(
-    "CandViewRefSelector",
-    bin1CutOneDaughter,
-    src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
-    filter = cms.bool(True)
-)
-
-process.goodZToMuMuOneTrackBin0 = cms.EDFilter(
-    "CandViewRefSelector",
-    bin0CutOneDaughter,
-    src = cms.InputTag("goodZToMuMuOneTrack"),
-    filter = cms.bool(True)
-)
-
-process.goodZToMuMuOneTrackBin1 = cms.EDFilter(
-    "CandViewRefSelector",
-    bin1CutOneDaughter,
-    src = cms.InputTag("goodZToMuMuOneTrack"),
-    filter = cms.bool(True)
+    filter = cms.bool(False)
 )
 
 zPlots = cms.PSet(
@@ -148,89 +98,76 @@ zPlots = cms.PSet(
     )
 )
 
-process.goodZToMuMuPlots = cms.EDAnalyzer(
+
+goodZToMuMuPlotsTemplate = cms.EDAnalyzer(
     "CandViewHistoAnalyzer",
     zPlots,
     src = cms.InputTag("goodZToMuMu")
 )
 
-process.goodZToMuMuOneTrackPlots = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuOneTrack")
-)
+process.goodZToMuMuPlots = goodZToMuMuPlotsTemplate
 
-process.goodZToMuMuOneStandAloneMuonPlots = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuOneStandAloneMuon")
-)
+etaBounds = [0, 0.5, 1, 1.5]
+
+def addModulesFromTemplate(sequence, moduleLabel, src, probeSelection):
+    print "selection for: ", moduleLabel   
+    for i in range(len(etaBounds)-1): 
+        module = copy.deepcopy(goodZToMuMuTemplate)
+        if probeSelection == "single":
+            cut = "%5.3f < daughter(1).eta < %5.3f" %(etaBounds[i], etaBounds[i+1])
+        elif probeSelection == "double":
+            cut = "%5.3f < daughter(0).eta < %5.3f | %5.3f < daughter(1).eta < %5.3f" %(etaBounds[i], etaBounds[i+1],etaBounds[i], etaBounds[i+1])
+        print i, ") cut = ",  cut 
+        setattr(module, "cut", cut)
+        setattr(module, "src", cms.InputTag(src))
+        copyModuleLabel = moduleLabel + str(i)
+        setattr(process, copyModuleLabel, module)
+        if sequence == None:
+            sequence = module
+        else:
+            sequence = sequence + module
+        plotModule = copy.deepcopy(goodZToMuMuPlotsTemplate)
+        setattr(plotModule, "src", cms.InputTag(copyModuleLabel))
+        for h in plotModule.histograms:
+            h.description.setValue(h.description.value() + " - " + cut)
+        plotModuleLabel = moduleLabel + "Plots" + str(i)
+        setattr(process, plotModuleLabel, plotModule)
+        sequence = sequence + plotModule
+    path = cms.Path(sequence)
+    setattr(process, moduleLabel+"Path", path)
 
 process.eventInfo = cms.OutputModule (
     "AsciiOutputModule"
 )
 
-process.goodZToMuMuPlotsBin0 = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuBin0")
-)
+process.goodZToMuMuPlots = goodZToMuMuPlotsTemplate
+process.goodZToMuMuOneStandAloneMuonPlots = copy.deepcopy(goodZToMuMuPlotsTemplate)
+process.goodZToMuMuOneStandAloneMuonPlots.src = cms.InputTag("goodZToMuMuOneStandAloneMuon")
+process.goodZToMuMuOneTrackPlots = copy.deepcopy(goodZToMuMuPlotsTemplate)
+process.goodZToMuMuOneTrackPlots.src = cms.InputTag("goodZToMuMuOneTrack")
 
-process.goodZToMuMuPlotsBin1 = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuBin1")
-)
-
-process.goodZToMuMuOneStandAloneMuonPlotsBin0 = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuOneStandAloneMuonBin0")
-)
-
-process.goodZToMuMuOneStandAloneMuonPlotsBin1 = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuOneStandAloneMuonBin1")
-)
-
-process.goodZToMuMuOneTrackPlotsBin0 = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuOneTrackBin0")
-)
-
-process.goodZToMuMuOneTrackPlotsBin1 = cms.EDAnalyzer(
-    "CandViewHistoAnalyzer",
-    zPlots,
-    src = cms.InputTag("goodZToMuMuOneTrackBin1")
-)
-
-process.zToMuMuPath = cms.Path(  
-    process.goodZToMuMu + 
-    process.goodZToMuMuPlots +
-    process.goodZToMuMuBin0 + process.goodZToMuMuPlotsBin0 + 
-    process.goodZToMuMuBin1 + process.goodZToMuMuPlotsBin1 
-)
-
-process.zToMuMuOneStandAloneMuonPath = cms.Path(
+addModulesFromTemplate(
+    process.goodZToMuMu +
+    process.goodZToMuMuPlots,
+    "goodZToMuMu", "goodZToMuMu",
+    "double")
+    
+addModulesFromTemplate(
     ~process.goodZToMuMu + 
     process.zToMuMuOneStandAloneMuon + 
     process.goodZToMuMuOneStandAloneMuon +
-    process.goodZToMuMuOneStandAloneMuonPlots +
-    process.goodZToMuMuOneStandAloneMuonBin0 + process.goodZToMuMuOneStandAloneMuonPlotsBin0 +
-    process.goodZToMuMuOneStandAloneMuonBin1 + process.goodZToMuMuOneStandAloneMuonPlotsBin1 
-)
+    process.goodZToMuMuOneStandAloneMuonPlots, 
+    "goodZToMuMuOneStandAloneMuon", "goodZToMuMuOneStandAloneMuon",
+    "single")
 
-process.zToMuMuOneTrackPath = cms.Path(
+addModulesFromTemplate(
     ~process.goodZToMuMu +
     ~process.zToMuMuOneStandAloneMuon +
     process.zToMuMuOneTrack +
     process.goodZToMuMuOneTrack +
-    process.goodZToMuMuOneTrackPlots +
-    process.goodZToMuMuOneTrackBin0 + process.goodZToMuMuOneTrackPlotsBin0 + 
-    process.goodZToMuMuOneTrackBin1 + process.goodZToMuMuOneTrackPlotsBin1  
-)
+    process.goodZToMuMuOneTrackPlots,
+    "goodZToMuMuOneTrack", "goodZToMuMuOneTrack",
+    "single")
   
 process.endPath = cms.EndPath( 
     process.eventInfo 
