@@ -24,25 +24,35 @@ process.TFileService = cms.Service(
 )
 
 zSelection = cms.PSet(
-    cut = cms.string("daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20")	
+    cut = cms.string("daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20"),
+    isoCut = cms.double(3.0),
+    muonIsolations1 = cms.InputTag("muonIsolations"),  
+    muonIsolations2 = cms.InputTag("muonIsolations")  
 )
 
 process.goodZToMuMu = cms.EDFilter(
-    "CandViewRefSelector",
+    "ZToMuMuIsolatedSelector",
     zSelection,
     src = cms.InputTag("dimuonsGlobal"),
-    filter = cms.bool(True),
+    filter = cms.bool(True) 
+)
+
+process.nonIsolatedZToMuMu = cms.EDFilter(
+    "ZToMuMuNonIsolatedSelector",
+    zSelection,
+    src = cms.InputTag("dimuonsGlobal"),
+    filter = cms.bool(True) 
 )
 
 process.zToMuMuOneTrack = cms.EDFilter(
-    "CandViewRefSelector",
+    "ZToMuMuIsolatedSelector",
     zSelection,
     src = cms.InputTag("dimuonsOneTrack"),
     filter = cms.bool(True)
 )
 
 process.zToMuMuOneStandAloneMuon = cms.EDFilter(
-    "CandViewRefSelector",
+    "ZToMuMuIsolatedSelector",
     zSelection,
     src = cms.InputTag("dimuonsOneStandAloneMuon"),
     filter = cms.bool(True)
@@ -106,6 +116,9 @@ goodZToMuMuPlotsTemplate = cms.EDAnalyzer(
 )
 
 process.goodZToMuMuPlots = goodZToMuMuPlotsTemplate
+nonIsolatedZToMuMuPlots = copy.deepcopy(goodZToMuMuPlotsTemplate)
+nonIsolatedZToMuMuPlots.src = cms.InputTag("nonIsolatedZToMuMu")
+setattr(process, "nonIsolatedZToMuMuPlots", nonIsolatedZToMuMuPlots)
 
 etaBounds = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.0]
 
@@ -154,6 +167,11 @@ addModulesFromTemplate(
     "goodZToMuMu", "goodZToMuMu",
     "double")
     
+process.nonIsolatedZToMuMuPath = cms.Path (
+    process.nonIsolatedZToMuMu +
+    process.nonIsolatedZToMuMuPlots,
+)
+
 addModulesFromTemplate(
     ~process.goodZToMuMu + 
     process.zToMuMuOneStandAloneMuon + 
