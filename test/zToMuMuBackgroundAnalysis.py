@@ -15,16 +15,16 @@ process.maxEvents = cms.untracked.PSet(
 
 process.source = cms.Source(
     "PoolSource",
-    fileNames = cms.untracked.vstring("file:dimuons.root")
+    fileNames = cms.untracked.vstring("file:/tmp/piccolo/dimuons_wmunu_job4.root")
 )
 
 process.TFileService = cms.Service(
     "TFileService",
-    fileName = cms.string("zToMuMuBackgroundAnalysis.root")
+    fileName = cms.string("root_dimuons10pb/zToMuMuBackgroundAnalysis_wmunu_job4.root")
 )
 
 zSelection = cms.PSet(
-    cut = cms.string("daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20"),
+    cut = cms.string("charge = 0 & daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20"),
     isoCut = cms.double(3.0),
     muonIsolations1 = cms.InputTag("muonIsolations"),  
     muonIsolations2 = cms.InputTag("muonIsolations")  
