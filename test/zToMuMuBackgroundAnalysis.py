@@ -15,12 +15,12 @@ process.maxEvents = cms.untracked.PSet(
 
 process.source = cms.Source(
     "PoolSource",
-    fileNames = cms.untracked.vstring("file:/tmp/piccolo/dimuons_wmunu_job4.root")
+    fileNames = cms.untracked.vstring("file:/tmp/piccolo/dimuons_wmunu_job3.root")
 )
 
 process.TFileService = cms.Service(
     "TFileService",
-    fileName = cms.string("root_dimuons10pb/zToMuMuBackgroundAnalysis_wmunu_job4.root")
+    fileName = cms.string("root_dimuons10pb/zToMuMuBackgroundAnalysis_wmunu_job3.root")
 )
 
 zSelection = cms.PSet(
@@ -29,6 +29,7 @@ zSelection = cms.PSet(
     muonIsolations1 = cms.InputTag("muonIsolations"),  
     muonIsolations2 = cms.InputTag("muonIsolations")  
 )
+
 
 process.goodZToMuMu = cms.EDFilter(
     "ZToMuMuIsolatedSelector",
@@ -44,10 +45,17 @@ process.nonIsolatedZToMuMu = cms.EDFilter(
     filter = cms.bool(True) 
 )
 
+process.zToMuGlobalMuOneTrack = cms.EDFilter(
+    "CandViewRefSelector",
+    cut = cms.string("daughter(0).isGlobalMuon = 1"),
+    src = cms.InputTag("dimuonsOneTrack"),
+    filter = cms.bool(True)
+)
+
 process.zToMuMuOneTrack = cms.EDFilter(
     "ZToMuMuIsolatedSelector",
     zSelection,
-    src = cms.InputTag("dimuonsOneTrack"),
+    src = cms.InputTag("zToMuGlobalMuOneTrack"),
     filter = cms.bool(True)
 )
 
@@ -183,6 +191,7 @@ addModulesFromTemplate(
 addModulesFromTemplate(
     ~process.goodZToMuMu +
     ~process.zToMuMuOneStandAloneMuon +
+    process.zToMuGlobalMuOneTrack +
     process.zToMuMuOneTrack +
     process.goodZToMuMuOneTrack +
     process.goodZToMuMuOneTrackPlots,
