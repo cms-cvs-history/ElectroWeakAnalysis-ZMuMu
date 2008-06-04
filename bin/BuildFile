@@ -2,6 +2,10 @@
 <use name=rootminuit>
 <use name=rootminuit2>
 
+<bin file=csa08ZFit.cpp name=csa08ZFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 <bin file=zMuMuFit.cpp name=zMuMuFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
