@@ -3,23 +3,22 @@
 #
 #     name                   value    error        min       max     free/fixed (optional)
 #------------------------------------------------------------------------------
-par  YieldZMuMu              9000.0     10            0    1000000     free 
-par  EfficiencyTk               0.98     0.001        0          1     free 
-par  EfficiencySa               0.97     0.001        0          1     free 
-par  EfficiencyIso              0.97     0.001        0          1     free 
-par  YieldBkgZMuTk            100.0      1            0    1000000     free 
-par  YieldBkgZMuSa              2.0      1            0    1000000     free 
-par  YieldBkgZMuMuNotIso        2.0      1            0    1000000     free 
-par  LambdaZMuMu               0.0     0.001     -1        0           free 
-par  Mass                      91.19     0.1         70        110     free 
-par  Gamma                      2.50     1            1         10     free 
+par  YieldZMuMu              8922.54    10            0    1000000     free 
+par  YieldBkgZMuTk             23.23     1            0    1000000     free 
+par  YieldBkgZMuSa              0.159    1            0    1000000     free 
+par  YieldBkgZMuMuNotIso        0.323    1            0    1000000     free 
+par  EfficiencyTk               0.998    0.001        0          1     free 
+par  EfficiencySa               0.964    0.01         0          1     free 
+par  EfficiencyIso              0.979    0.01         0          1     free 
+par  LambdaZMuMu                -0.049   0.01        -1          0     free 
+par  Mass                       91.481   0.1         70        110     free 
+par  Gamma                      3.899    0.1          1         10     free 
 par  PhotonFactorZMuMu          0.0      0.001        0        100     fixed
 par  InterferenceFactorZMuMu    0.0      0.001       -100      100     fixed 
 par  MeanZMuMu                  0.0      0.1         -0.5        0.5   fixed 
-par  SigmaZMuMu                 7.0      1            0         10     free 
-par  SigmaZMuSa                 7.0      1            2         20     free 
-par  SigmaZMuMuNotIso           7.0      1            2         20     free 
-par  Lambda                    -0.01     0.001     -100          0     free 
+par  SigmaZMuMu                 1.749    0.1          0         10     free 
+par  SigmaZMuSa                 5.76     1            2         20     free 
+par  Lambda                    -0.02     0.01     -100          0     free 
 par  A0                         1.0      0.1          0          2     fixed 
 par  A1                         0.0      1       -10000      10000     free
 par  A2                         0.0      1        -1000       1000     free
