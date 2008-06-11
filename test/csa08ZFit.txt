@@ -3,24 +3,69 @@
 #
 #     name                   value    error        min       max     free/fixed (optional)
 #------------------------------------------------------------------------------
-par  YieldZMuMu              8922.54    10            0    1000000     free 
-par  YieldBkgZMuTk             23.23     1            0    1000000     free 
-par  YieldBkgZMuSa              0.159    1            0    1000000     free 
-par  YieldBkgZMuMuNotIso        0.323    1            0    1000000     free 
-par  EfficiencyTk               0.998    0.001        0          1     free 
-par  EfficiencySa               0.964    0.01         0          1     free 
-par  EfficiencyIso              0.979    0.01         0          1     free 
-par  LambdaZMuMu                -0.049   0.01        -1          0     free 
-par  Mass                       91.481   0.1         70        110     free 
-par  Gamma                      3.899    0.1          1         10     free 
-par  PhotonFactorZMuMu          0.0      0.001        0        100     fixed
-par  InterferenceFactorZMuMu    0.0      0.001       -100      100     fixed 
-par  MeanZMuMu                  0.0      0.1         -0.5        0.5   fixed 
-par  SigmaZMuMu                 1.749    0.1          0         10     free 
-par  SigmaZMuSa                 5.76     1            2         20     free 
-par  Lambda                    -0.02     0.01     -100          0     free 
+par  YieldZMuMu              8862   100            0    1000000     free
+par  YieldBkgZMuTk             97.4     10            0    1000000     fixed
+par  YieldBkgZMuSa              0.204    0.1          0    1000000     fixed
+par  YieldBkgZMuMuNotIso     8862       100          0    1000000     fixed
+par  EfficiencyTk               0.997    0.001        0          1     free
+par  EfficiencySa               0.939    0.01         0          1     free
+par  EfficiencyIso              0.973    0.01          0          1    free
+par  LambdaZMuMu                -0.057   0.01        -1            1     free
+par  Mass                       91.38   0.1         70        110      free
+par  Gamma                      3.32    0.1          1         10     free
+par  PhotonFactorZMuMu          0.0      0.1       -0.2        100     fixed
+par  InterferenceFactorZMuMu    0.0      0.1       -100        100     fixed 
+par  MeanZMuMu                  0.0      0.1       -0.5        0.5     fixed
+par  SigmaZMuMu                 0.78     0.1          0         10     free
+par  SigmaZMuSa                 5.12     1            2         20     free
+par  Lambda                    -0.008     0.009     -100           0    fixed
+par  Alpha                     -0.039     0.01      -100           0    fixed
 par  A0                         1.0      0.1          0          2     fixed 
-par  A1                         0.0      1       -10000      10000     free
-par  A2                         0.0      1        -1000       1000     free
+par  A1                         0.0089   0.001       -10000      10000     fixed
+par  A2                         -0.00013 0.0001      -1000       1000     fixed
+par  B0                         1.0      0.1          0          2     fixed 
+par  B1                         -0.0018  0.001      -10000      10000     fixed
+par  B2                         0.0      1        -1000       1000     fixed
 migrad 
+fix YieldZMuMu
+release EfficiencyTk
+release EfficiencySa
+fix Mass
+fix Gamma
+fix SigmaZMuMu
+fix SigmaZMuSa
+release Lambda
+release Alpha
+release A1
+release A2 
+release B1
+#release B2 
+migrad
+fix YieldBkgZMuTk
+fix YieldBkgZMuSa
+fix YieldBkgZMuMuNotIso
+fix Lambda
+fix Alpha
+fix A1
+fix A2
+fix B1
+#fix B2
+release YieldZMuMu
+release EfficiencyTk
+release EfficiencySa
+release EfficiencyIso
+migrad
+release YieldBkgZMuTk
+release YieldBkgZMuSa
+release YieldBkgZMuMuNotIso
+release Lambda
+release Alpha
+release SigmaZMuMu
+release SigmaZMuSa
+release Mass
+release Gamma
+release A1
+release A2
+release B1
+migrad
 print_all
