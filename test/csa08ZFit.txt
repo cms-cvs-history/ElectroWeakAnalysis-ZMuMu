@@ -20,6 +20,7 @@ par  SigmaZMuMu                 0.78     0.1          0         10     free
 par  SigmaZMuSa                 5.12     1            2         20     free
 par  Lambda                    -0.008     0.009     -100           0    fixed
 par  Alpha                     -0.039     0.01      -100           0    fixed
+par  Beta                      0.0       0.01      -100           0    fixed
 par  A0                         1.0      0.1          0          2     fixed 
 par  A1                         0.0089   0.001       -10000      10000     fixed
 par  A2                         -0.00013 0.0001      -1000       1000     fixed
@@ -36,6 +37,7 @@ fix SigmaZMuMu
 fix SigmaZMuSa
 release Lambda
 release Alpha
+release Beta
 release A1
 release A2 
 release B1
@@ -46,6 +48,7 @@ fix YieldBkgZMuSa
 fix YieldBkgZMuMuNotIso
 fix Lambda
 fix Alpha
+fix Beta
 fix A1
 fix A2
 fix B1
@@ -60,6 +63,7 @@ release YieldBkgZMuSa
 release YieldBkgZMuMuNotIso
 release Lambda
 release Alpha
+release Beta
 release SigmaZMuMu
 release SigmaZMuSa
 release Mass
