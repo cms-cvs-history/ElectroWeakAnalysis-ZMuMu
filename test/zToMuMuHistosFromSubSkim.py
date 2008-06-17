@@ -93,25 +93,64 @@ process.goodZToMuMuOneStandAloneMuonExists = cms.EDFilter(
 process.goodZToMuMuOneTrackExists = cms.EDFilter(
     "CandCollectionExistFilter",
     src = process.goodZToMuMuOneTrackPlots.src
-    )
+)
+
+zSelection = cms.PSet(
+    cut = cms.string("1 > 0"),
+    isoCut = cms.double(3.0),
+    muonIsolations1 = cms.InputTag("muonIsolations"),  
+    muonIsolations2 = cms.InputTag("muonIsolations")  
+)
+
+process.goodZToMuMuFilter = cms.EDFilter(
+    "ZToMuMuNonIsolatedSelector",
+    zSelection,
+    src = cms.InputTag("goodZToMuMu"),
+    filter = cms.bool(True) 
+)
+
+process.nonIsolatedZToMuMuFilter = cms.EDFilter(
+    "ZToMuMuNonIsolatedSelector",
+    zSelection,
+    src = cms.InputTag("nonIsolatedZToMuMu"),
+    filter = cms.bool(True) 
+)
+
+process.goodZToMuMuOneStandAloneMuonFilter = cms.EDFilter(
+    "ZToMuMuNonIsolatedSelector",
+    zSelection,
+    src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
+    filter = cms.bool(True) 
+)
+
+process.goodZToMuMuOneTrackFilter = cms.EDFilter(
+    "ZToMuMuNonIsolatedSelector",
+    zSelection,
+    src = cms.InputTag("goodZToMuMuOneTrack"),
+    filter = cms.bool(True) 
+)
 
 process.goodZToMuMuPath = cms.Path(
     process.goodZToMuMuExists *
+    process.goodZToMuMuFilter *
     process.goodZToMuMuPlots
 )
     
 process.nonIsolatedZToMuMuPath = cms.Path(
     process.nonIsolatedZToMuMuExists *
+    process.nonIsolatedZToMuMuFilter *
     process.nonIsolatedZToMuMuPlots
 )
 
 process.goodZToMuMuOneStandAloneMuonPath = cms.Path(
     process.goodZToMuMuOneStandAloneMuonExists *
+    process.goodZToMuMuOneStandAloneMuonFilter *
     process.goodZToMuMuOneStandAloneMuonPlots
 )
     
 process.goodZToMuMuOneTrackPath = cms.Path(
     process.goodZToMuMuOneTrackExists *
+    process.goodZToMuMuOneTrackFilter *
     process.goodZToMuMuOneTrackPlots
 )
 
