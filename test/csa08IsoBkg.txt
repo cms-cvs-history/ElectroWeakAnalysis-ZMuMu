@@ -5,8 +5,8 @@
 #------------------------------------------------------------------------------
 par  YieldZMuMu1              1000   100            0    1000000        free
 par  YieldZMuMu2              0      100            0    1000000        free
-par  YieldBkg1               1000     10            0    1000000        free
-par  YieldBkg2               1000     10            0    1000000        free
+par  YieldBkg               6     10            0    1000000        free
+par  EffBkg                 0.1        0.09         0    1              free
 par  LambdaZMuMu            -0.0536678 0.01        -1            1      fixed
 par  Mass                     91.369    0.1         70        110       fixed
 par  Gamma                   3.47757   0.1          1         10        fixed
