@@ -1,0 +1,25 @@
+#
+# Z -> Mu Mu fit  
+#
+#     name                   value    error        min       max     free/fixed (optional)
+#------------------------------------------------------------------------------
+par  YieldZMuMu              8862   100            0    1000000        free
+par  YieldBkgZMuTk             97.4     10            0    1000000     free
+par  YieldBkgZMuSa              0.204    0.1          0    1000000     free
+par  YieldBkgZMuMuNotIso     8862       100          0    1000000      free
+par  EfficiencyTk               0.997    0.001        0          1     free
+par  EfficiencySa               0.939    0.01         0          1     free
+par  EfficiencyIso              0.973    0.01          0          1    free
+par  MeanZMuSa                 91.0     1           50         200     free
+par  SigmaZMuSa                 5.12     1            2         20     free
+par  Lambda                    -0.008     0.009     -100           0   free
+par  Alpha                     -0.039     0.01      -100           0   free
+par  Beta                      0.0       0.01      -100           0    free
+par  A0                         1.0      0.1          0          2     free 
+par  A1                         0.0089   0.001       -10000      10000 free
+par  A2                         -0.00013 0.0001      -1000       1000  free
+par  B0                         1.0      0.1          0          2     free 
+par  B1                         -0.0018  0.001      -10000      10000  free
+par  B2                         0.0      1        -1000       1000     free
+migrad 
+print_all

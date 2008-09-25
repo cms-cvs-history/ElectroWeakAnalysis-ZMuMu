@@ -6,6 +6,10 @@
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
+<bin file=csa08NewZFit.cpp name=csa08NewZFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 <bin file=csa08IsoBkg.cpp name=csa08IsoBkg>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
