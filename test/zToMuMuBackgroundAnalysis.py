@@ -16,9 +16,7 @@ process.maxEvents = cms.untracked.PSet(
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "file:/data1/cmsdata/dimuons/dimuons_wmunu_job1.root",
-    "file:/data1/cmsdata/dimuons/dimuons_wmunu_job2.root",
-    "file:/data1/cmsdata/dimuons/dimuons_wmunu_job3.root"
+    "file:Zmm.root"
     )
 )
 
@@ -30,10 +28,8 @@ process.TFileService = cms.Service(
 zSelection = cms.PSet(
     cut = cms.string("charge = 0 & daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20"),
     isoCut = cms.double(3.0),
-    muonIsolations1 = cms.InputTag("muonIsolations"),  
-    muonIsolations2 = cms.InputTag("muonIsolations")  
+    isolationType = cms.string("track")
 )
-
 
 process.goodZToMuMu = cms.EDFilter(
     "ZToMuMuIsolatedSelector",
