@@ -3,10 +3,10 @@
 #
 #     name                   value    error        min       max     free/fixed (optional)
 #------------------------------------------------------------------------------
-par  YieldZMuMu              8862   100            0    1000000        free
-par  YieldBkgZMuTk             97.4     10            0    1000000     free
+par  YieldZMuMu              1000   100            0    1000000        free
+par  YieldBkgZMuTk             10.4     10            0    1000000     free
 par  YieldBkgZMuSa              0.204    0.1          0    1000000     free
-par  YieldBkgZMuMuNotIso     8862       100          0    1000000      free
+par  YieldBkgZMuMuNotIso     1000       100          0    1000000      free
 par  EfficiencyTk               0.997    0.001        0          1     free
 par  EfficiencySa               0.939    0.01         0          1     free
 par  EfficiencyIso              0.973    0.01          0          1    free
