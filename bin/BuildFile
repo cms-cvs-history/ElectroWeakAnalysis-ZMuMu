@@ -1,44 +1,8 @@
 <use name=rootgraphics>
 <use name=rootminuit>
 <use name=rootminuit2>
+<bin file=csa08HLTFit.cpp name=csa08HLTFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 
-<bin file=csa08ZFit.cpp name=csa08ZFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=csa08NewZFit.cpp name=csa08NewZFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=csa08IsoBkg.cpp name=csa08IsoBkg>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zMuMuFit.cpp name=zMuMuFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zMuMuExpFit.cpp name=zMuMuExpFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zMassFit.cpp name=zMassFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zMassHSFit.cpp name=zMassHSFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zMassMCFit.cpp name=zMassMCFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zToMuMuMassMCFit.cpp name=zToMuMuMassMCFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
-<bin file=zMassResFit.cpp name=zMassResFit>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
-</bin>
