@@ -125,7 +125,7 @@ process.out = cms.OutputModule(
       "keep L1MuRegionalCands_*_*_*",
       "keep L1MuGMTCands_*_*_*",
       "keep L1MuGMTReadoutCollection_*_*_*",
-      "keep l1extraL1MuonParticles_*_*_*",
+     # "keep l1extraL1MuonParticles_*_*_*",
       "keep TriggerResults_*_*_*",
       "keep recoTracks_generalTracks_*_*",
       "keep recoTracks_globalMuons_*_*",
