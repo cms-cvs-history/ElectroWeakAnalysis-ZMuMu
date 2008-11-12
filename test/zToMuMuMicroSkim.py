@@ -1,20 +1,20 @@
 import FWCore.ParameterSet.Config as cms
 import copy
 
-process = cms.Process("ZToMuMuSubSkim")
+process = cms.Process("reskim")
 
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool(True)
 )
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10000)
+    input = cms.untracked.int32(-1)
 )
 
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "file:/scratch1/cms/data/summer08/skim/dimuons_skim_zmumu.root"
+    "rfio:/castor/cern.ch/user/n/noli/TriggerStudy/dimuons_1.root"
     )
 )
 
@@ -105,22 +105,37 @@ process.eventInfo = cms.OutputModule (
 
 process.out = cms.OutputModule(
     "PoolOutputModule",
-    fileName = cms.untracked.string('file:./Zmm.root'),
+    fileName = cms.untracked.string('file:wmunu_reskim.root'),
     outputCommands = cms.untracked.vstring(
       "drop *",
-      "keep *_prunedGenParticles_*_ZToMuMuSubSkim",
-      "keep *_selectedLayer1Muons_*_ZToMuMuSubSkim",
-      "keep *_selectedLayer1TrackCands_*_ZToMuMuSubSkim",
-      "keep *_dimuons_*_ZToMuMuSubSkim",
-      "keep *_dimuonsOneTrack_*_ZToMuMuSubSkim",
-      "keep *_dimuonsGlobal_*_ZToMuMuSubSkim",
-      "keep *_dimuonsOneStandAloneMuon_*_ZToMuMuSubSkim",
-      "keep *_muonMatch_*_ZToMuMuSubSkim",
-      "keep *_allDimuonsMCMatch_*_ZToMuMuSubSkim",
-      "keep *_goodZToMuMu_*_ZToMuMuSubSkim",
-      "keep *_nonIsolatedZToMuMu_*_ZToMuMuSubSkim",
-      "keep *_goodZToMuMuOneStandAloneMuon_*_ZToMuMuSubSkim",
-      "keep *_goodZToMuMuOneTrack_*_ZToMuMuSubSkim"
+      "keep *_prunedGenParticles_*_reskim",
+      "keep *_selectedLayer1Muons_*_reskim",
+      "keep *_selectedLayer1TrackCands_*_reskim",
+      "keep *_dimuons_*_reskim",
+      "keep *_dimuonsOneTrack_*_reskim",
+      "keep *_dimuonsGlobal_*_reskim",
+      "keep *_dimuonsOneStandAloneMuon_*_reskim",
+      "keep *_muonMatch_*_reskim",
+      "keep *_allDimuonsMCMatch_*_reskim",
+      "keep *_goodZToMuMu_*_reskim",
+      "keep *_nonIsolatedZToMuMu_*_reskim",
+      "keep *_goodZToMuMuOneStandAloneMuon_*_reskim",
+      "keep *_goodZToMuMuOneTrack_*_reskim",
+      # "keep *_genParticles_*_*",
+      "keep L1MuRegionalCands_*_*_*",
+      "keep L1MuGMTCands_*_*_*",
+      "keep L1MuGMTReadoutCollection_*_*_*",
+      "keep l1extraL1MuonParticles_*_*_*",
+      "keep TriggerResults_*_*_*",
+      "keep recoTracks_generalTracks_*_*",
+      "keep recoTracks_globalMuons_*_*",
+      "keep recoTracks_standAloneMuons_*_*",
+      "keep recoMuons_muons_*_*",
+      "keep *_selectedLayer1Muons_*_*",
+      "keep *_selectedLayer1TrackCands_*_*",
+#      "keep *_goodTracks_*_*",
+       "drop *_*_*_TestDimuonReco" 
+
     ),
     SelectEvents = cms.untracked.PSet(
       SelectEvents = cms.vstring(
