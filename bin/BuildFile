@@ -5,4 +5,14 @@
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
+<bin file=zChi2Fit.cpp name=zChi2Fit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zUMLChi2Fit.cpp name=zUMLChi2Fit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+  <use name=FWCore/FWLite>
+  <use name=DataFormats/FWLite>
+</bin>
 
