@@ -15,4 +15,7 @@
   <use name=FWCore/FWLite>
   <use name=DataFormats/FWLite>
 </bin>
+<bin file=toyMonteCarlo.cpp name=toyMonteCarlo>
+  <use name=boost_program_options>
+</bin>
 
