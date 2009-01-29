@@ -1,3 +1,11 @@
+/*************************/
+/*                       */ 
+/* author: Pasquale Noli */
+/* INFN Naples           */
+/* Create TTree from     */
+/* fit on Toy Montecarlo */
+/*                       */
+/*************************/
 #include <fstream>
 #include <stdlib.h>
 #include <stdio.h>
