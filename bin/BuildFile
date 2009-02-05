@@ -9,6 +9,10 @@
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
+<bin file=zFitToyMc.cpp name=zFitToyMc>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
 <bin file=zUMLChi2Fit.cpp name=zUMLChi2Fit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
