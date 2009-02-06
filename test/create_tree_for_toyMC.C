@@ -36,8 +36,6 @@ void read_fit()
  
   TFile *f;
   TTree *tree;
-  
-   //void initTree(){
  
   f = new TFile("fitResult.root","RECREATE");
   
@@ -66,6 +64,4 @@ void read_fit()
   tree->Print();
   f->Write();
   f->Close();
-
-
 }
