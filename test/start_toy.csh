@@ -12,7 +12,7 @@ mkdir outputToy
 set i=1
 while ($i <= $1)
 	echo  $i
-     	toyMonteCarlo -p analysis_Z_133pb_trackIso_3.root -n 1 -s $i 
+     	toyMonteCarlo -n 1 -s $i 
 	mergeTFileServiceHistograms -o analysis_$i.root -i zmm_1.root bkg_1.root
 	zChi2Fit analysis_$i.root >& log_fit_$i.txt
 	rm -f analysis_$i.root
