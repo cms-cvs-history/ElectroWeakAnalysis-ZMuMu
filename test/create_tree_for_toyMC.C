@@ -18,10 +18,8 @@
 #include <iomanip>
 
 
-void read_fit()
+
 {
-  gROOT->Reset();
- 
   Double_t Y;
   Double_t dY;
   Double_t Tk;
