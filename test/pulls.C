@@ -14,11 +14,11 @@
   c1->cd(1);
   tree->Fit("gaus","(Tk-0.998364)/dTk");
   c1->cd(2);
-  tree->Fit("gaus","(Sa-0.998364)/dSa"); 
+  tree->Fit("gaus","(Sa-0.989626)/dSa"); 
   c1->cd(3);
-  tree->Fit("gaus","(Iso-0.998364)/dIso");
+  tree->Fit("gaus","(Iso-0.980196)/dIso");
   c1->cd(4);
-  tree->Fit("gaus","(Hlt-0.998364)/dHlt");
+  tree->Fit("gaus","(Hlt-0.915496)/dHlt");
   c1->Draw();
   c1->SaveAs("pulls.eps");
 

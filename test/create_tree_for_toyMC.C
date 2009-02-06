@@ -46,17 +46,17 @@ void create_tree_for_toyMC()()
   tree->Branch("dTk",&dTk," dTk/D");
   tree->Branch("Sa",&Sa," Sa/D");
   tree->Branch("dSa",&dSa," dSa/D");
-  tree->Branch("Iso",&Iso," Iso/D");
-  tree->Branch("dIso",&dIso," dIso/D");
   tree->Branch("Hlt",&Hlt," Hlt/D");
   tree->Branch("dHlt",&dHlt," dHlt/D");
+  tree->Branch("Iso",&Iso," Iso/D");
+  tree->Branch("dIso",&dIso," dIso/D");
   tree->Branch("chi2",&chi2," chi2/D");
 
   ifstream fin;
   fin.open("fitResult.txt");
   while(!(fin.eof())){
     fin >> Y >> dY >> Tk >>  dTk >>  Sa >>
-      dSa >>  Iso >> dIso >>  Hlt >>  dHlt >> chi2;
+      dSa >>  Hlt >>  dHlt >>  Iso >> dIso >> chi2;
     tree->Fill();
   }
 
