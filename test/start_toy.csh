@@ -14,7 +14,7 @@ while ($i <= $1)
 	echo  $i
      	toyMonteCarlo -n 1 -s $i 
 	mergeTFileServiceHistograms -o analysis_$i.root -i zmm_1.root bkg_1.root
-	zChi2Fit analysis_$i.root >& log_fit_$i.txt
+	zFitToyMc analysis_$i.root >& log_fit_$i.txt
 	rm -f analysis_$i.root
 	mv *ps outputToy
 	mv log_fit_$i.txt outputToy
