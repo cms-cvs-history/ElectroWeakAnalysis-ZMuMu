@@ -25,6 +25,7 @@ void create_tree_for_toyMC()()
   gROOT->Reset();
 
   Double_t Y;
+  Double_t Y_true;
   Double_t dY;
   Double_t Tk;
   Double_t Tk_true;
@@ -47,6 +48,7 @@ void create_tree_for_toyMC()()
   tree = new TTree("tree"," C data from ASCII file");
 
   tree->Branch("Y",&Y,"Y/D");
+  tree->Branch("Y_true",&Y_true,"Y/D");
   tree->Branch("dY",&dY,"dY/D");
   tree->Branch("Tk",&Tk," Tk/D");
   tree->Branch("Tk_true",&Tk_true," Tk_true/D");
@@ -69,9 +71,10 @@ void create_tree_for_toyMC()()
 
   fin.getline(line, 1024);
   cout << line << endl;
-  fin >> Tk_true >> Sa_true >> Iso_true >> Hlt_true;
+  fin >> Y_true >> Tk_true >> Sa_true >> Iso_true >> Hlt_true;
+  cout << "Yield = " << Y_true;
   cout << "eff_trk = " << Tk_true;
-  cout << " eff_se = " << Sa_true;
+  cout << " eff_sa = " << Sa_true;
   cout << " eff_iso = " << Iso_true;
   cout << " eff_hlt = " << Hlt_true << endl;
   while(!(fin.eof())){

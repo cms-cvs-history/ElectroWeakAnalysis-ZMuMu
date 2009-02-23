@@ -19,7 +19,7 @@ set eff_hlt = $6
 set bkg_scale = $7
 set max_mass = $8
 rm -f fitResult.txt
-echo "# nz eff_trk eff_sa eff_iso eff_hlt" > fitResult.txt
+echo "# Yield eff_trk eff_sa eff_iso eff_hlt" > fitResult.txt
 echo "$nz $eff_trk $eff_sa $eff_iso $eff_hlt" >> fitResult.txt
 while ($i <= $iterations)
 	echo  $i
