@@ -73,7 +73,7 @@ void create_tree_for_toyMC()()
   cout << line << endl;
   fin >> Y_true >> Tk_true >> Sa_true >> Iso_true >> Hlt_true;
   cout << "Yield = " << Y_true;
-  cout << "eff_trk = " << Tk_true;
+  cout << " eff_trk = " << Tk_true;
   cout << " eff_sa = " << Sa_true;
   cout << " eff_iso = " << Iso_true;
   cout << " eff_hlt = " << Hlt_true << endl;
