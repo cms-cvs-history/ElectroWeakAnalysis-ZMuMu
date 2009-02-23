@@ -7,6 +7,7 @@
 #########################
 
 #!/bin/csh
+if(-e outputToy) rm -rf outputToy
 mkdir outputToy
 set i=1
 set iterations = $1
@@ -16,13 +17,13 @@ set eff_sa = $4
 set eff_iso = $5
 set eff_hlt = $6
 set bkg_scale = $7
-set mass_max = $8
-rm fitResult.txt
-echo "# eff_trk eff_sa eff_iso eff_hlt" > fitResult.txt
-echo "$eff_trk $eff_sa $eff_iso $eff_hlt" >> fitResult.txt
+set max_mass = $8
+rm -f fitResult.txt
+echo "# nz eff_trk eff_sa eff_iso eff_hlt" > fitResult.txt
+echo "$nz $eff_trk $eff_sa $eff_iso $eff_hlt" >> fitResult.txt
 while ($i <= $iterations)
 	echo  $i
-     	toyMonteCarlo -n 1 -s $i  -y $nz - T $eff_trk -S $eff_sa -I $eff_iso -H $eff_hlt -f $bkg_scale -M $8
+     	toyMonteCarlo -n 1 -s $i  -y $nz -T $eff_trk -S $eff_sa -I $eff_iso -H $eff_hlt -f $bkg_scale -M $max_mass
 	# -S 1 -T 1 -H 1
 	mergeTFileServiceHistograms -o analysis_$i.root -i zmm_1.root bkg_1.root
 	zFitToyMc -M 140 analysis_$i.root >& log_fit_$i.txt
