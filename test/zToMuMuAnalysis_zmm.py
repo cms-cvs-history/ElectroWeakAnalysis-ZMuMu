@@ -145,7 +145,7 @@ process.goodZToMuMuOneStandAloneMuon = cms.EDFilter(
 process.goodZToMuMuOneStandAloneMuonFirstHLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
-    condition =cms.string("firstMatched"),
+    condition =cms.string("globalisMatched"),
     hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
     filter = cms.bool(True) 
 )
