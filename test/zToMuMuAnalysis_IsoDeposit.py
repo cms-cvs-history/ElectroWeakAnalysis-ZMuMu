@@ -2,6 +2,8 @@
 #It produces plot for Fit study
 #author Luca Lista
 #modificated by Noli Pasquale 21-10-2008 
+#modified by Annapaola de Cosa 18-12-2008
+
 
 import FWCore.ParameterSet.Config as cms
 import copy
@@ -50,6 +52,20 @@ zSelection = cms.PSet(
     alpha = cms.untracked.double("0.0"),
     beta = cms.untracked.double("-0.75"),
     relativeIsolation = cms.bool(False)
+
+# For standard isolation (I_Tkr<3GeV) choose this configuration:
+#   isoCut = cms.double(3.),
+#   ptThreshold = cms.untracked.double("1.5"),
+#   etEcalThreshold = cms.untracked.double("0.2"),
+#   etHcalThreshold = cms.untracked.double("0.5"),
+#   deltaRTrk = cms.untracked.double("0.3"),
+#   deltaREcal = cms.untracked.double("0.25"),
+#   deltaRHcal = cms.untracked.double("0.25"),
+#   alpha = cms.untracked.double("0."),
+#   beta = cms.untracked.double("-0.75"),
+#   relativeIsolation = cms.bool(False)
+
+
  )
 
 process.goodZToMuMu = cms.EDFilter(
@@ -146,11 +162,11 @@ process.goodZToMuMuOneStandAloneMuon = cms.EDFilter(
     filter = cms.bool(True)
 )
 
-#ZMuSta:richiedo che il muGlobal 'First' ha HLT match
+#ZMuSta:richiedo che il muGlobal ha HLT match
 process.goodZToMuMuOneStandAloneMuonFirstHLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
-    condition =cms.string("firstMatched"),
+    condition =cms.string("globalisMatched"),
     hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
     filter = cms.bool(True) 
 )
