@@ -17,22 +17,15 @@ process.options = cms.untracked.PSet(
 )
 
 process.maxEvents = cms.untracked.PSet(
+#    input = cms.untracked.int32(17810)
     input = cms.untracked.int32(100)
 )
 
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_1.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_2.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_3.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_4.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_5.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_6.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_7.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_8.root",
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_9.root"
-    )
+    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_1.root"
+     )
 )
 
 process.TFileService = cms.Service(
@@ -42,14 +35,15 @@ process.TFileService = cms.Service(
 
 zSelection = cms.PSet(
     cut = cms.string("charge = 0 & daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20"),
-    isoCut = cms.double(3.0),
+    isoCut = cms.double(3.),
     ptThreshold = cms.untracked.double("1.5"),
     etEcalThreshold = cms.untracked.double("0.2"),
     etHcalThreshold = cms.untracked.double("0.5"),
+    deltaRVetoTrk = cms.untracked.double("0.015"),
     deltaRTrk = cms.untracked.double("0.3"),
     deltaREcal = cms.untracked.double("0.25"),
     deltaRHcal = cms.untracked.double("0.25"),
-    alpha = cms.untracked.double("0.0"),
+    alpha = cms.untracked.double("0."),
     beta = cms.untracked.double("-0.75"),
     relativeIsolation = cms.bool(False)
 
@@ -58,6 +52,7 @@ zSelection = cms.PSet(
 #   ptThreshold = cms.untracked.double("1.5"),
 #   etEcalThreshold = cms.untracked.double("0.2"),
 #   etHcalThreshold = cms.untracked.double("0.5"),
+#   deltaRVetoTrk = cms.untracked.double("0.015"),
 #   deltaRTrk = cms.untracked.double("0.3"),
 #   deltaREcal = cms.untracked.double("0.25"),
 #   deltaRHcal = cms.untracked.double("0.25"),
