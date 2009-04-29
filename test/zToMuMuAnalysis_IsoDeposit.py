@@ -2,6 +2,8 @@
 #It produces plot for Fit study
 #author Luca Lista
 #modificated by Noli Pasquale 21-10-2008 
+#modified by Annapaola de Cosa 18-12-2008
+
 
 import FWCore.ParameterSet.Config as cms
 import copy
@@ -15,33 +17,50 @@ process.options = cms.untracked.PSet(
 )
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+#    input = cms.untracked.int32(17810)
+    input = cms.untracked.int32(100)
 )
 
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/reskim/qcd/noli/InclusiveMuPt15/InclusiveMuPt15SubSkim/d85f8e8eea12813d6b1603f1ce4b0f84/qcd_reskim_10.root",
-    )
+    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_1.root"
+     )
 )
 
 process.TFileService = cms.Service(
     "TFileService",
-    fileName = cms.string("zMuMuHistograms-qcd.root")
+    fileName = cms.string("Analysis_ztautau_45pb.root")
 )
 
 zSelection = cms.PSet(
     cut = cms.string("charge = 0 & daughter(0).pt > 20 & daughter(1).pt > 20 & abs(daughter(0).eta)<2 & abs(daughter(1).eta)<2 & mass > 20"),
-    isoCut = cms.double(1.7),
-    ptThreshold = cms.untracked.double("1"),
+    isoCut = cms.double(3.),
+    ptThreshold = cms.untracked.double("1.5"),
     etEcalThreshold = cms.untracked.double("0.2"),
     etHcalThreshold = cms.untracked.double("0.5"),
-    deltaRTrk = cms.untracked.double("0.2"),
+    deltaRVetoTrk = cms.untracked.double("0.015"),
+    deltaRTrk = cms.untracked.double("0.3"),
     deltaREcal = cms.untracked.double("0.25"),
     deltaRHcal = cms.untracked.double("0.25"),
-    alpha = cms.untracked.double("0.75"),
+    alpha = cms.untracked.double("0."),
     beta = cms.untracked.double("-0.75"),
     relativeIsolation = cms.bool(False)
+
+# For standard isolation (I_Tkr<3GeV) choose this configuration:
+#   isoCut = cms.double(3.),
+#   ptThreshold = cms.untracked.double("1.5"),
+#   etEcalThreshold = cms.untracked.double("0.2"),
+#   etHcalThreshold = cms.untracked.double("0.5"),
+#   deltaRVetoTrk = cms.untracked.double("0.015"),
+#   deltaRTrk = cms.untracked.double("0.3"),
+#   deltaREcal = cms.untracked.double("0.25"),
+#   deltaRHcal = cms.untracked.double("0.25"),
+#   alpha = cms.untracked.double("0."),
+#   beta = cms.untracked.double("-0.75"),
+#   relativeIsolation = cms.bool(False)
+
+
  )
 
 process.goodZToMuMu = cms.EDFilter(
@@ -138,11 +157,11 @@ process.goodZToMuMuOneStandAloneMuon = cms.EDFilter(
     filter = cms.bool(True)
 )
 
-#ZMuSta:richiedo che il muGlobal 'First' ha HLT match
+#ZMuSta:richiedo che il muGlobal ha HLT match
 process.goodZToMuMuOneStandAloneMuonFirstHLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
-    condition =cms.string("firstMatched"),
+    condition =cms.string("globalisMatched"),
     hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
     filter = cms.bool(True) 
 )
