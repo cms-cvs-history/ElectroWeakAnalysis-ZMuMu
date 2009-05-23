@@ -14,7 +14,7 @@ process.maxEvents = cms.untracked.PSet(
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "rfio:/castor/cern.ch/user/n/noli/TriggerStudy/dimuons_1.root"
+    "file:/scratch1/users/fabozzi/patv2_skim/testSkim_v2.root"
     )
 )
 
@@ -35,8 +35,13 @@ process.prunedGenParticles = cms.EDProducer(
     )
 )
 
-process.load("ElectroWeakAnalysis.ZReco.dimuonsSequences_cff")
 process.load("ElectroWeakAnalysis.ZReco.dimuonsHLTFilter_cfi")
+process.load("ElectroWeakAnalysis.ZReco.patCandidatesForDimuonsSequences_cff")
+process.load("ElectroWeakAnalysis.ZReco.dimuons_cfi")
+process.load("ElectroWeakAnalysis.ZReco.dimuonsOneTrack_cfi")
+process.load("ElectroWeakAnalysis.ZReco.dimuonsGlobal_cfi")
+process.load("ElectroWeakAnalysis.ZReco.dimuonsOneStandAloneMuon_cfi")
+process.load("ElectroWeakAnalysis.ZReco.mcTruthForDimuons_cff")
 process.load("ElectroWeakAnalysis.ZReco.dimuonsFilter_cfi")
 process.load("ElectroWeakAnalysis.ZReco.dimuonsOneTrackFilter_cfi")
 
@@ -105,7 +110,7 @@ process.eventInfo = cms.OutputModule (
 
 process.out = cms.OutputModule(
     "PoolOutputModule",
-    fileName = cms.untracked.string('file:wmunu_reskim.root'),
+    fileName = cms.untracked.string('file:zmm_reskim_v2.root'),
     outputCommands = cms.untracked.vstring(
       "drop *",
       "keep *_prunedGenParticles_*_reskim",

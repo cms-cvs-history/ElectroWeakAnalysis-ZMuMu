@@ -16,13 +16,13 @@ process.maxEvents = cms.untracked.PSet(
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "file:Wmunu.root"
+    "file:/scratch1/users/fabozzi/patv2_skim/testSkim_v2.root"
     )
 )
 
 process.TFileService = cms.Service(
     "TFileService",
-    fileName = cms.string("wMuNu.root")
+    fileName = cms.string("test.root")
 )
 
 zSelection = cms.PSet(
