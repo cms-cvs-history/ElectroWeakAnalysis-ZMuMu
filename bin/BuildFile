@@ -22,7 +22,11 @@
 <bin file=toyMonteCarlo.cpp name=toyMonteCarlo>
   <use name=boost_program_options>
 </bin>
-<bin file=testBias.cpp name=testBias>
-  <use name=PhysicsTools/Utilities>
-  <use name=boost_program_options>
+#<bin file=testBias.cpp name=testBias>
+#  <use name=PhysicsTools/Utilities>
+#  <use name=boost_program_options>
+#</bin>
+<bin file=zMuMuRooFit.cpp name=zMuMuRooFit>
+  <use name=rootroofit>
+   <use name=boost_program_options>
 </bin>
