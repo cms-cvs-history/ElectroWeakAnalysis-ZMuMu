@@ -18,19 +18,19 @@ process.options = cms.untracked.PSet(
 
 process.maxEvents = cms.untracked.PSet(
 #    input = cms.untracked.int32(17810)
-    input = cms.untracked.int32(100)
+    input = cms.untracked.int32(-1)
 )
 
 process.source = cms.Source(
     "PoolSource",
     fileNames = cms.untracked.vstring(
-    "rfio:/dpm/na.infn.it/home/cms/store/user/noli/skim/ztautau/noli/Ztautau/ztautauDimuonskim/22c29467821970683934506a4bb85f81/dimuons_1.root"
+    "file:testDimuonSkim_prova.root"
      )
 )
 
 process.TFileService = cms.Service(
     "TFileService",
-    fileName = cms.string("Analysis_ztautau_45pb.root")
+    fileName = cms.string("Analysis_test.root")
 )
 
 zSelection = cms.PSet(
@@ -74,7 +74,7 @@ process.goodZToMuMuAtLeast1HLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMu"),
     condition =cms.string("atLeastOneMatched"),
-    hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
+    hltPath = cms.string("HLT_Mu9"),
     filter = cms.bool(True) 
 )
 
@@ -83,7 +83,7 @@ process.goodZToMuMu2HLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMu"),
     condition =cms.string("bothMatched"),
-    hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
+    hltPath = cms.string("HLT_Mu9"),
     filter = cms.bool(True) 
 )
 
@@ -92,7 +92,7 @@ process.goodZToMuMu1HLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMu"),
     condition =cms.string("exactlyOneMatched"),
-    hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
+    hltPath = cms.string("HLT_Mu9"),
     filter = cms.bool(True) 
 )
 
@@ -109,7 +109,7 @@ process.nonIsolatedZToMuMuAtLeast1HLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("nonIsolatedZToMuMu"),
     condition =cms.string("atLeastOneMatched"),
-    hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
+    hltPath = cms.string("HLT_Mu9"),
     filter = cms.bool(True) 
 )
 
@@ -146,7 +146,7 @@ process.goodZToMuMuOneTrackFirstHLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMuOneTrack"),
     condition =cms.string("firstMatched"),
-    hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
+    hltPath = cms.string("HLT_Mu9"),
     filter = cms.bool(True) 
 )
 
@@ -162,7 +162,7 @@ process.goodZToMuMuOneStandAloneMuonFirstHLT = cms.EDFilter(
     "ZHLTMatchFilter",
     src = cms.InputTag("goodZToMuMuOneStandAloneMuon"),
     condition =cms.string("globalisMatched"),
-    hltPath = cms.string("hltSingleMuNoIsoL3PreFiltered"),
+    hltPath = cms.string("HLT_Mu9"),
     filter = cms.bool(True) 
 )
 
