@@ -27,6 +27,6 @@
 #  <use name=boost_program_options>
 #</bin>
 <bin file=zMuMuRooFit.cpp name=zMuMuRooFit>
-  <use name=rootroofit>
+  <use name=roofit>
    <use name=boost_program_options>
 </bin>
