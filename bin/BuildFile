@@ -1,32 +1,36 @@
 <use name=rootgraphics>
 <use name=rootminuit>
 <use name=rootminuit2>
-<bin file=csa08HLTFit.cpp name=csa08HLTFit>
+
+<bin file=csa08ZFit.cpp name=csa08ZFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
-<bin file=zChi2Fit.cpp name=zChi2Fit>
+<bin file=zMuMuFit.cpp name=zMuMuFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
-<bin file=zFitToyMc.cpp name=zFitToyMc>
+<bin file=zMuMuExpFit.cpp name=zMuMuExpFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
-<bin file=zUMLChi2Fit.cpp name=zUMLChi2Fit>
+<bin file=zMassFit.cpp name=zMassFit>
   <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
-  <use name=FWCore/FWLite>
-  <use name=DataFormats/FWLite>
 </bin>
-<bin file=toyMonteCarlo.cpp name=toyMonteCarlo>
+<bin file=zMassHSFit.cpp name=zMassHSFit>
+  <use name=PhysicsTools/Utilities>
   <use name=boost_program_options>
 </bin>
-#<bin file=testBias.cpp name=testBias>
-#  <use name=PhysicsTools/Utilities>
-#  <use name=boost_program_options>
-#</bin>
-<bin file=zMuMuRooFit.cpp name=zMuMuRooFit>
-  <use name=roofit>
-   <use name=boost_program_options>
+<bin file=zMassMCFit.cpp name=zMassMCFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zToMuMuMassMCFit.cpp name=zToMuMuMassMCFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
+</bin>
+<bin file=zMassResFit.cpp name=zMassResFit>
+  <use name=PhysicsTools/Utilities>
+  <use name=boost_program_options>
 </bin>
