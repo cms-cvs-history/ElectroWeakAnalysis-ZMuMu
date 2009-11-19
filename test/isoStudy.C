@@ -14,7 +14,7 @@ double effSaErr[n] = { 0.0025364, 0.0024718, 0.00233289, 0.00219377, 0.00228775 
 double effTk[n] = { 0.996802, 0.996852, 0.996798, 0.99686, 0.996899 };
 double effTkErr[n] = { 0.000584946, 0.000550869, 0.000529331, 0.000509021, 0.000526273 };
 double relErr[n];
-for(size_t i = 0; i < n; ++i) relErr[i] = zYieldErr[i] / zYield[i];
+for(unsigned int i = 0; i < n; ++i) relErr[i] = zYieldErr[i] / zYield[i];
 
 gStyle->SetOptStat(kFALSE);
 TCanvas canvas ("canvas","Isolation Study", 200, 10, 700, 500);
