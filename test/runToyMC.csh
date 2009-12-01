@@ -23,11 +23,10 @@ echo "# Yield eff_trk eff_sa eff_iso eff_hlt" > fitResult.txt
 echo "$nz $eff_trk $eff_sa $eff_iso $eff_hlt" >> fitResult.txt
 while ($i <= $iterations)
 	echo  $i
-     	toyMonteCarlo -p Analysis_10pb.root -n 1 -s $i  -y $nz -T $eff_trk -S $eff_sa -I $eff_iso -H $eff_hlt -f $bkg_scale -M $max_mass
+     	toyMonteCarlo -n 1 -s $i  -y $nz -T $eff_trk -S $eff_sa -I $eff_iso -H $eff_hlt -f $bkg_scale -M $max_mass
 	# -S 1 -T 1 -H 1
-	mergeTFileServiceHistograms  -i zmm_1.root bkg_1.root
-	mv out.root analysis_$i.root
-	zChi2Fit -c -M 120 analysis_$i.root >& log_fit_$i.txt
+	mergeTFileServiceHistograms -o analysis_$i.root -i zmm_1.root bkg_1.root
+	zFitToyMc -M 140 analysis_$i.root >& log_fit_$i.txt
 	#mv zmm_1.root zmm_$i.root
 	#zFitToyMc  zmm_1.root >& log_fit_$i.txt
 	#mv  analysis_$i.root outputToy
