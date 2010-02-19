@@ -1,5 +1,5 @@
 {
-  TFile *file = TFile::Open("Ntuple_test.root");
+  TFile *file = TFile::Open("NtupleLoose_test.root");
   TTree * Events = dynamic_cast< TTree *> (file->Get("Events"));
   TFile * output_file = TFile::Open("histo.root", "RECREATE");
   
@@ -14,24 +14,36 @@
   output_file->cd("/");
 
   // zGolden1HLT plots
-  TCut cut_zGolden1HLT("zGolden1HLTMass>20 && zGoldenDau1Pt> 20 && zGolden1HLTDau2Pt>20 && zGolden1HLTDau1Iso< 3.0 && zGolden1HLTDau2Iso < 3.0");
+  // TCut cut_zGolden1HLT("zGolden1HLTMass>20 && zGoldenDau1Pt> 20 && zGolden1HLTDau2Pt>20 && zGolden1HLTDau1Iso< 3.0 && zGolden1HLTDau2Iso < 3.0");
+  // to be equivalent to:
+  TCut cut2_zGolden1HLT("zGoldenMass>20 && zGoldenDau1Pt> 20 && zGoldenDau2Pt>20 && zGoldenDau1Iso< 3.0 && zGoldenDau2Iso < 3.0 && ((zGoldenDau1HLTBit==1 && zGoldenDau2HLTBit==0) || (zGoldenDau1HLTBit==0 && zGoldenDau2HLTBit==1))");
   TDirectory * dir = output_file->mkdir("goodZToMuMu1HLTPlots");
   dir->cd();
   TH1F * zMass = new TH1F("zMass", "zMass", 200, 0, 200);
+  // TH1F * zMass2 = new TH1F("zMass2", "zMass2", 200, 0, 200);
   //  Events->Draw("zGoldenMass");
-  Events->Project("zMass", "zGolden1HLTMass", cut_zGolden1HLT );
-  zMass->Write();
+  //Events->Project("zMass", "zGolden1HLTMass", cut_zGolden1HLT );
+   Events->Project("zMass", "zGoldenMass", cut2_zGolden1HLT );
+ zMass->Write();
+ //zMass2->Write();
+
   output_file->cd("/");
 
 
- // zGolden2HLT plots
-  TCut cut_zGolden2HLT("zGolden2HLTMass>20 && zGoldenDau1Pt> 20 && zGolden2HLTDau2Pt>20 && zGolden2HLTDau1Iso< 3.0 && zGolden2HLTDau2Iso < 3.0");
+ // zGolden2HLT plots 
+  // TCut cut_zGolden2HLT("zGolden2HLTMass>20 && zGoldenDau1Pt> 20 && zGolden2HLTDau2Pt>20 && zGolden2HLTDau1Iso< 3.0 && zGolden2HLTDau2Iso < 3.0");
+  TCut cut2_zGolden2HLT("zGoldenMass>20 && zGoldenDau1Pt> 20 && zGoldenDau2Pt>20 && zGoldenDau1Iso< 3.0 && zGoldenDau2Iso < 3.0 && ((zGoldenDau1HLTBit==1 && zGoldenDau2HLTBit==1) )");  
   TDirectory * dir = output_file->mkdir("goodZToMuMu2HLTPlots");
   dir->cd();
+  //TH1F * zMass = new TH1F("zMass", "zMass", 200, 0, 200);
   TH1F * zMass = new TH1F("zMass", "zMass", 200, 0, 200);
   //  Events->Draw("zGoldenMass");
-  Events->Project("zMass", "zGolden2HLTMass", cut_zGolden2HLT );
+  // Events->Project("zMass", "zGolden2HLTMass", cut_zGolden2HLT );
+  Events->Project("zMass", "zGoldenMass", cut2_zGolden2HLT );
+
   zMass->Write();
+  //zMass2->Write();
+
   output_file->cd("/");
 
  // zGoldenNotIso plots
@@ -134,9 +146,20 @@
    HcalIso->Write();
    delete h2;
 
+   // eta of muon not triggered
 
+   //   Events->Draw("zGoldenDau2Eta", "zGoldenDau1HLTBit==0");
+ TH1F * muNotTriggeredEta = new TH1F("muNotTriggeredEta", "muNotTriggeredEta", 240, -6, 6.);
+ TH1F * h2 = new TH1F("h2", "h2", 240, -6, 6.);
 
+ Events->Project("muNotTriggeredEta","zGoldenDau1Eta", "zGoldenDau1HLTBit==0");
+ Events->Project("h2","zGoldenDau2Eta", "zGoldenDau2HLTBit==0");
+
+ muNotTriggeredEta->Add(h2);
+ muNotTriggeredEta->Write();
+ delete h2;
     output_file->Close();
+
 
 
  
