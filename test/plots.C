@@ -77,6 +77,18 @@
   zMass->Write();
   output_file->cd("/");
 
+// zMuSta plots
+  TCut cut_zMuMuSta("zGoldenDau1Pt> 20 && zGoldenDau2Pt>20 && zGoldenDau1Iso< 3.0 && zGoldenDau2Iso < 3.0");
+  TDirectory * dir = output_file->mkdir("zmumuSaMassHistogram");
+  dir->cd();
+  TH1F * zMass = new TH1F("zMass", "zMass", 200, 0, 200);
+  //  Events->Draw("zGoldenMass");
+  Events->Project("zMass", "zGoldenMassSa", cut_zMuMuSta );
+  zMass->Write();
+  output_file->cd("/");
+
+
+
 
   //(mu1.phi -mu2.phi)
   TH1F * deltaPhi = new TH1F("deltaPhi", "deltaPhi", 120, 0, 6.);
