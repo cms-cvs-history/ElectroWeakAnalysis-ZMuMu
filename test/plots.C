@@ -292,6 +292,27 @@
    dau2NofMuMatches->Write();
    delete dau2NofMuMatches;
  
+   TH1F * dau1EmEnergy  = new TH1F("dua1EmEnergy", "dau1EmEnergy", 200, -0.1, 19.9);
+   Events->Project("dua1EmEnergy", "zGoldenDau1MuEnergyEm", cut_zGolden );
+   dau1EmEnergy->Write();
+   delete dau1EmEnergy;
+
+   TH1F * dau2EmEnergy  = new TH1F("dua2EmEnergy", "dau2EmEnergy", 200, -0.1, 19.9);
+   Events->Project("dua2EmEnergy", "zGoldenDau2MuEnergyEm", cut_zGolden );
+   dau2EmEnergy->Write();
+   delete dau2EmEnergy;
+
+   TH1F * dau1HadEnergy  = new TH1F("dua1HadEnergy", "dau1HadEnergy", 200, -0.1, 19.9);
+   Events->Project("dua1HadEnergy", "zGoldenDau1MuEnergyHad", cut_zGolden );
+   dau1HadEnergy->Write();
+   delete dau1HadEnergy;
+
+   TH1F * dau2HadEnergy  = new TH1F("dua2HadEnergy", "dau2HadEnergy", 200, -0.1, 19.9);
+   Events->Project("dua2HadEnergy", "zGoldenDau2MuEnergyHad", cut_zGolden );
+   dau2HadEnergy->Write();
+   delete dau2HadEnergy;
+
+
    
 
    TH2F * MuChambersVsMuMatches = new TH2F("MuChambersVsMuMatches", "MuChambersVsMuMatches", 21, -0.5, 20.5, 21, -0.5, 20.5);
